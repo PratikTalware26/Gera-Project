@@ -1,0 +1,8 @@
+th, td{
+    border: 1px solid !important;
+}
+.pricetable-cont table thead th{
+    background: #282828;
+    color: white;
+    padding: 15px;
+}
