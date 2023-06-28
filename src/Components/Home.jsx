@@ -4,7 +4,7 @@ import homeImg from "../assets/homeImg.jpg"
 
 const Home = () => {
   return (
-    <div className='home-cont'>
+    <div className='home-cont' id='home'>
         <img src={homeImg} alt="homeImg" className='w-100'/>
     </div>
   )

@@ -1,0 +1,114 @@
+.popupContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 20000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.popupContainer.exit {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.popup {
+  position: relative;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 370px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.popupEffect {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.popupContainer.exit .popup {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.popupContainer.exit .popupEffect {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.popup-img-cont {
+  text-align: center;
+  background: #5d5e5e;
+  padding: 15px;
+}
+
+.popup-img-cont img {
+  width: 120px;
+}
+
+.popup-inp-cont {
+  padding: 30px 20px;
+}
+
+.popup-inp-cont h2 {
+  font-size: x-large;
+}
+
+.view-cost {
+  text-align: center;
+}
+
+.popup h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.popup input[type="text"],
+.popup input[type="email"],
+.popup input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.popup-submit-btn-cont {
+  text-align: center;
+}
+
+.submit-btn {
+  width: 100%;
+  background: var(--colorSecondary);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.close-btn {
+  position: absolute;
+  right: 5px;
+  top: 4px;
+  background: var(--colorSecondary);
+  color: white;
+  border: none;
+  padding: 2px 6px;
+}
+
+.popup button[type="submit"] {
+  margin-right: 10px;
+}
+
+.popup button[type="submit"]:hover,
+.popup button[type="button"]:hover {
+  background-color: var(--colorSecondary);
+}

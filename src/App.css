@@ -7,3 +7,10 @@
   --colorPrimary:#3794D1;
   --colorSecondary:#EE7F30;
 }
+.main-btn{
+  color: white !important;
+  background: var(--colorSecondary) !important;
+}
+.mySwiper{
+  padding: 10px !important;
+}

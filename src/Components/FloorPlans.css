@@ -1,0 +1,21 @@
+.floor-cont{
+    padding: 30px 10px !important;
+}
+.floor-img-cont{
+    position: relative;
+    border: 1px solid #ccc;
+}
+.floor-img-cont:hover{
+    box-shadow: 2px 2px 4px 2px #ccc;
+}
+.floor-img-cont img{
+    filter: blur(1px);
+}
+.floor-btn{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* margin: 0 auto; */
+    z-index: 1;
+}

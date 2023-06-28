@@ -1,9 +1,26 @@
-import React,{useState, useEffect} from 'react'
-import "./BestPrice.css"
-import { useLocation } from 'react-router-dom';
-import mainLogo from "../assets/mainLogo(500 × 200 px).png"
+import React, {useState, useEffect} from "react";
+import "./FloorPlans.css";
+import mainLogo from "../assets/mainLogo(500 × 200 px).png";
 
-const BestPrice = () => {
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+// import required modules
+import { Navigation, Pagination } from "swiper";
+
+import floorImg from "../assets/floorPlan(350 × 230 px).jpg";
+import floorImg2 from "../assets/floorPlan2.jpg";
+import floorImg3 from "../assets/floorPlan3.jpg";
+import floorImg4 from "../assets/floorPlan4.jpg";
+
+import { useLocation } from "react-router-dom";
+
+const FloorPlans = () => {
     // const { setThanksState } = useContext(ThanksContext);
     // const navigate = useNavigate();
   //Handeling Form Logic
@@ -121,92 +138,71 @@ const BestPrice = () => {
   };
   //************** */
 
+  //handling slides wrt windowWidth
+  const [slidesPerView, setSlidesPerView] = useState(4);
+  const [windowWidth, setWindowwidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowwidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if(windowWidth<600){
+        setSlidesPerView(1)
+    }else if (windowWidth < 700) {
+      setSlidesPerView(2);
+    } else if (windowWidth < 1200) {
+      setSlidesPerView(3);
+    } else {
+      setSlidesPerView(4);
+    }
+  }, [windowWidth]);
+
   return (
-    <div className='p-2' id='bestprice'>
-        <h2 className='text-center p-2'>Best Price</h2>
-        <div className="pricetable-cont">
-        <table className="table table-hover table-striped text-center">
-          <thead>
-            <tr>
-              <th>Sr. No.</th>
-              <th>Type</th>
-              <th>Area (Sq.Ft.)</th>
-              <th>Price Range</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>2 BHK Grand</td>
-              <td>725</td>
-              <td>
-                <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>3 BHK Royal</td>
-              <td>816</td>
-              <td>
-                <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>3 BHK Prime</td>
-              <td>1108</td>
-              <td>
-                <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>3 BHK Grand</td>
-              <td>1240</td>
-              <td>
-                <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>3.5 BHK Royal</td>
-              <td>1440</td>
-              <td>
-                <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>3 BHK Supreme</td>
-              <td>1525</td>
-              <td>
-                <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>4 BHK Supreme</td>
-              <td>1525</td>
-              <td>
-                <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <div className="p-2 floor-cont" id="floorplans">
+      <h2 className="text-center p-2">Floor Plans</h2>
+      <div>
+        <Swiper
+          pagination={{
+            clickable:true
+          }}
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          slidesPerView={slidesPerView}
+          spaceBetween={30}
+          className="mySwiper"
+        >
+          <SwiperSlide>
+            <div className="floor-img-cont">
+            <img src={floorImg} alt="floorImg1" className="w-100" />
+            <button className="floor-btn btn main-btn" onClick={()=>setFormpopup(!formPopup)}>View Plan</button>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="floor-img-cont">
+            <img src={floorImg2} alt="floorImg2" className="w-100" />
+            <button className="floor-btn btn main-btn" onClick={()=>setFormpopup(!formPopup)}>View Plan</button>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="floor-img-cont">
+            <img src={floorImg3} alt="floorImg3" className="w-100" />
+            <button className="floor-btn btn main-btn" onClick={()=>setFormpopup(!formPopup)}>View Plan</button>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="floor-img-cont">
+            <img src={floorImg4} alt="floorImg4" className="w-100" />
+            <button className="floor-btn btn main-btn" onClick={()=>setFormpopup(!formPopup)}>View Plan</button>
+            </div>
+          </SwiperSlide>
+        </Swiper>
       </div>
       {formPopup && (
           <div className={`popupContainer ${isExiting ? "exit" : ""}`} onClick={closePopup}>
@@ -215,7 +211,7 @@ const BestPrice = () => {
                 <img src={mainLogo} alt="" />
               </div>
               <div className="popup-inp-cont">
-                <h2>Register to view price</h2>
+                <h2>Register to view plan</h2>
                 <form onSubmit={handleSubmit}>
                   <input
                     type="text"
@@ -246,7 +242,7 @@ const BestPrice = () => {
                   />
                   <div className="popup-submit-btn-cont">
                     <button type="submit" className="submit-btn">
-                      View Price
+                      View Plan
                     </button>
                   </div>
                 </form>
@@ -258,7 +254,7 @@ const BestPrice = () => {
           </div>
         )}
     </div>
-  )
-}
+  );
+};
 
-export default BestPrice
+export default FloorPlans;
