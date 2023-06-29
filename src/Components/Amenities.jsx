@@ -55,6 +55,18 @@ const Amenities = () => {
     }
   }, [windowWidth]);
 
+  useEffect(()=>{
+    if (enlargedImage) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  },[enlargedImage])
+
   return (
     <div className="p-2 amenities-cont" id="amenities">
       <h2 className="text-center p-2">Amenities</h2>
@@ -86,13 +98,13 @@ const Amenities = () => {
       </div>
       {enlargedImage && (
         <div className="enlarged-image-overlay" onClick={closeEnlargedImage}>
-          <div className="enlarged-image-container">
+          <div className="enlarged-image-container" onClick={(e)=>e.stopPropagation()}>
             <div>
               <Swiper
                 pagination={true}
                 slidesPerView={1}
-                navigation={true}
-                // spaceBetween={30}
+                navigation={windowWidth<900?false:true}
+                spaceBetween={10}
                 modules={[Pagination, Navigation]}
                 className="mySwiper"
               >

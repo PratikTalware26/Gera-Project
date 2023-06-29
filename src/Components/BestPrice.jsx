@@ -1,11 +1,13 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useContext} from 'react'
 import "./BestPrice.css"
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import mainLogo from "../assets/mainLogo(500 × 200 px).png"
+import { ThanksContext } from '../App';
+import axios from 'axios';
 
 const BestPrice = () => {
-    // const { setThanksState } = useContext(ThanksContext);
-    // const navigate = useNavigate();
+    const { setThanksState } = useContext(ThanksContext);
+    const navigate = useNavigate();
   //Handeling Form Logic
   //data
   const [enquiryData, setEnquiryData] = useState({
@@ -15,7 +17,7 @@ const BestPrice = () => {
     origin: "",
     area: "form_popup",
     ip: "",
-    domain: "godrejofficial.in",
+    domain: "geradeveloper.in",
     utm_source: "",
     utm_medium: "",
     utm_campaign: "",
@@ -33,46 +35,46 @@ const BestPrice = () => {
     e.preventDefault();
     // console.log(enquiryData);
     try {
-        // const fetchData = async () => {
-        //   const jsonData = JSON.stringify(enquiryData);
-        //   await axios
-        //     .post(
-        //       "https://www.crm.brickfolio.in/api/leads/add_raw_lead",
-        //       jsonData,
-        //       {
-        //         headers: {
-        //           "Content-Type": "application/json; charset=utf-8",
-        //           "Access-Control-Allow-Origin": "*",
-        //         },
-        //       }
-        //     )
-        //     .then((res) => {
-        //       setThanksState(true);
-        //       navigate("/thanks");
-        //     });
-        // };
-        // fetchData();
-      console.log(enquiryData);
+        const fetchData = async () => {
+          const jsonData = JSON.stringify(enquiryData);
+          await axios
+            .post(
+              "https://www.crm.brickfolio.in/api/leads/add_raw_lead",
+              jsonData,
+              {
+                headers: {
+                  "Content-Type": "application/json; charset=utf-8",
+                  "Access-Control-Allow-Origin": "*",
+                },
+              }
+            )
+            .then((res) => {
+              setThanksState(true);
+              navigate("/thanks");
+            });
+        };
+        fetchData();
+      // console.log(enquiryData);
     } catch (error) {
       console.log(error.message);
     }
   };
 
   //User ip address fetching
-//   useEffect(() => {
-//     const fetchIP = async () => {
-//       try {
-//         const response = await axios.get('https://godrejofficial.in/userApi.php');
-//         const ip = response.data.ip;
-//         // console.log(ip)
-//         setEnquiryData((prevData) => ({ ...prevData, ip }));
-//       } catch (error) {
-//         console.log('Error fetching IP address:', error);
-//       }
-//     };
+  useEffect(() => {
+    const fetchIP = async () => {
+      try {
+        const response = await axios.get('https://geradeveloper.in/userIp.php');
+        const ip = response.data.ip;
+        // console.log(ip)
+        setEnquiryData((prevData) => ({ ...prevData, ip }));
+      } catch (error) {
+        console.log('Error fetching IP address:', error);
+      }
+    };
 
-//     fetchIP();
-//   }, []);
+    fetchIP();
+  }, []);
 
   //utm data
   const location = useLocation();
@@ -122,10 +124,11 @@ const BestPrice = () => {
   //************** */
 
   return (
-    <div className='p-2' id='bestprice'>
-        <h2 className='text-center p-2'>Best Price</h2>
+    <div className='p-2 d-flex align-items-center' id='bestprice'>
+      <div className='w-100'>
+        <h2 className='text-center p-2 text-light'>Best Price</h2>
         <div className="pricetable-cont">
-        <table className="table table-hover table-striped text-center">
+        <table className="table table-striped text-center">
           <thead>
             <tr>
               <th>Sr. No.</th>
@@ -141,7 +144,7 @@ const BestPrice = () => {
               <td>725</td>
               <td>
                 <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
+                  <span>View Price</span>
                 </button>
               </td>
             </tr>
@@ -151,7 +154,7 @@ const BestPrice = () => {
               <td>816</td>
               <td>
                 <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
+                <span>View Price</span>
                 </button>
               </td>
             </tr>
@@ -161,7 +164,7 @@ const BestPrice = () => {
               <td>1108</td>
               <td>
                 <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
+                <span>View Price</span>
                 </button>
               </td>
             </tr>
@@ -171,7 +174,7 @@ const BestPrice = () => {
               <td>1240</td>
               <td>
                 <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
+                <span>View Price</span>
                 </button>
               </td>
             </tr>
@@ -181,7 +184,7 @@ const BestPrice = () => {
               <td>1440</td>
               <td>
                 <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
+                <span>View Price</span>
                 </button>
               </td>
             </tr>
@@ -191,7 +194,7 @@ const BestPrice = () => {
               <td>1525</td>
               <td>
                 <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
+                <span>View Price</span>
                 </button>
               </td>
             </tr>
@@ -201,7 +204,7 @@ const BestPrice = () => {
               <td>1525</td>
               <td>
                 <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
+                <span>View Price</span>
                 </button>
               </td>
             </tr>
@@ -257,6 +260,7 @@ const BestPrice = () => {
             </div>
           </div>
         )}
+        </div>
     </div>
   )
 }

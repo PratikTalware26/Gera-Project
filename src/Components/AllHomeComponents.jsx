@@ -6,6 +6,7 @@ import BestPrice from './BestPrice'
 import Amenities from './Amenities'
 import FloorPlans from './FloorPlans'
 import Enquiry from './Enquiry'
+import BottomButtons from './BottomButtons'
 
 const AllHomeComponents = () => {
   return (
@@ -17,6 +18,7 @@ const AllHomeComponents = () => {
         <Amenities/>
         <FloorPlans/>
         <Enquiry/>
+        <BottomButtons/>
     </div>
   )
 }

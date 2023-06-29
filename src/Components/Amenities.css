@@ -1,5 +1,6 @@
 .amenities-cont{
-    padding: 30px 10px;
+    padding: 30px 10px !important;
+    background-color: aliceblue;
 }
 .amenities-cont .mySwiper img{
     box-shadow: 1px 1px 3px 2px #ccc;
@@ -23,7 +24,7 @@
   .enlarged-image-container {
     position: relative;
     max-width: 90%;
-    max-height: 90%;
+    /* max-height: 90%; */
     /* height:80%; */
   }
   
@@ -44,4 +45,9 @@
   
   .close-button:hover {
     color: #ccc;
+  }
+  @media screen and (max-width:900px) {
+    .enlarged-image-container{
+      max-width: 100% !important;
+    }
   }

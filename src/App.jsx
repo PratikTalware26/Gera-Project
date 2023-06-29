@@ -12,7 +12,7 @@ import Thanks from './Components/Thanks';
 export const ThanksContext = createContext()
 
 function App() {
-  const [thanksState, setThanksState] = useState(true)
+  const [thanksState, setThanksState] = useState(false)
 
   return (
     <>

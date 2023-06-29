@@ -3,13 +3,13 @@ import mainImg from "../assets/enquiryImg.jpg";
 import "./Enquiry.css";
 import mainLogo from "../assets/mainLogo(500 × 200 px).png";
 import Disclaimer from "./Disclaimer";
-// import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-// import { ThanksContext } from "../App";
+import { ThanksContext } from "../App";
 
 const Enquiry = () => {
-    // const { setThanksState } = useContext(ThanksContext);
-    // const navigate = useNavigate();
+    const { setThanksState } = useContext(ThanksContext);
+    const navigate = useNavigate();
     //Handeling Form Logic
     //data
     const [enquiryData, setEnquiryData] = useState({
@@ -19,7 +19,7 @@ const Enquiry = () => {
       origin: "",
       area: "footer",
       ip: "",
-      domain: "godrejofficial.in",
+      domain: "geradeveloper.in",
       utm_source: "",
       utm_medium: "",
       utm_campaign: "",
@@ -28,37 +28,37 @@ const Enquiry = () => {
     });
 
     //User ip address fetching
-//   useEffect(() => {
-//     const fetchIP = async () => {
-//       try {
-//         const response = await axios.get('https://godrejofficial.in/userApi.php');
-//         const ip = response.data.ip;
-//         // console.log(ip)
-//         setEnquiryData((prevData) => ({ ...prevData, ip }));
-//       } catch (error) {
-//         console.log('Error fetching IP address:', error);
-//       }
-//     };
+  useEffect(() => {
+    const fetchIP = async () => {
+      try {
+        const response = await axios.get('https://geradeveloper.in/userIp.php');
+        const ip = response.data.ip;
+        // console.log(ip)
+        setEnquiryData((prevData) => ({ ...prevData, ip }));
+      } catch (error) {
+        console.log('Error fetching IP address:', error);
+      }
+    };
 
-//     fetchIP();
-//   }, []);
+    fetchIP();
+  }, []);
   
     //utm data
-    // const location = useLocation();
+    const location = useLocation();
   
-    // useEffect(() => {
-    //   const searchParams= new URLSearchParams(location.search)
-    //   if(searchParams.get("utm_source")){
-    //     setEnquiryData((prevData)=>({
-    //       ...prevData,
-    //       utm_source:searchParams.get("utm_source"),
-    //       utm_medium: searchParams.get("utm_medium"),
-    //       utm_campaign: searchParams.get("utm_campaign"),
-    //       utm_term: searchParams.get("utm_term"),
-    //       utm_content: searchParams.get("utm_content"),
-    //     }))
-    //   }
-    // }, [location]);
+    useEffect(() => {
+      const searchParams= new URLSearchParams(location.search)
+      if(searchParams.get("utm_source")){
+        setEnquiryData((prevData)=>({
+          ...prevData,
+          utm_source:searchParams.get("utm_source"),
+          utm_medium: searchParams.get("utm_medium"),
+          utm_campaign: searchParams.get("utm_campaign"),
+          utm_term: searchParams.get("utm_term"),
+          utm_content: searchParams.get("utm_content"),
+        }))
+      }
+    }, [location]);
   
     const handleChange = (e) => {
       const name = e.target.name;
@@ -70,26 +70,26 @@ const Enquiry = () => {
       e.preventDefault();
       // console.log(queryParam.get("utm_source"));
       try {
-        // const fetchData = async () => {
-        //   const jsonData = JSON.stringify(enquiryData);
-        //   await axios
-        //     .post(
-        //       "https://www.crm.brickfolio.in/api/leads/add_raw_lead",
-        //       jsonData,
-        //       {
-        //         headers: {
-        //           "Content-Type": "application/json; charset=utf-8",
-        //           "Access-Control-Allow-Origin": "*",
-        //         },
-        //       }
-        //     )
-        //     .then((res) => {
-        //       setThanksState(true);
-        //       navigate("/thanks");
-        //     });
-        // };
-        // fetchData();
-        console.log(enquiryData)
+        const fetchData = async () => {
+          const jsonData = JSON.stringify(enquiryData);
+          await axios
+            .post(
+              "https://www.crm.brickfolio.in/api/leads/add_raw_lead",
+              jsonData,
+              {
+                headers: {
+                  "Content-Type": "application/json; charset=utf-8",
+                  "Access-Control-Allow-Origin": "*",
+                },
+              }
+            )
+            .then((res) => {
+              setThanksState(true);
+              navigate("/thanks");
+            });
+        };
+        fetchData();
+        // console.log(enquiryData)
       } catch (error) {
         console.log(error.message);
       }

@@ -1,0 +1,23 @@
+.bottom-btn-cont{
+    position: fixed;
+    display: flex;
+    width: 100%;
+    bottom: -4%;
+    z-index: 999;
+    transition: bottom 0.3s ease-in-out;
+}
+.bottom-btn-cont.visible {
+    bottom: 0;
+  }
+.bottom-btn-cont div{
+    flex: 1;
+}
+.bottom-btn-cont button{
+    width: 100%;
+    padding: 10px;
+    background: var(--colorPrimary);
+    border: 1px solid white;
+    color: white;
+    font-size: small;
+    min-height: 45px;
+}

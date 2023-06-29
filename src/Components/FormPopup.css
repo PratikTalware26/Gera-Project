@@ -1,4 +1,4 @@
-.popupContainer {
+/* .popupContainer {
   position: fixed;
   top: 0;
   left: 0;
@@ -93,6 +93,169 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.close-btn {
+  position: absolute;
+  right: 5px;
+  top: 4px;
+  background: var(--colorSecondary);
+  color: white;
+  border: none;
+  padding: 2px 6px;
+}
+
+.popup button[type="submit"] {
+  margin-right: 10px;
+}
+
+.popup button[type="submit"]:hover,
+.popup button[type="button"]:hover {
+  background-color: var(--colorSecondary);
+} */
+
+.popupContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 20000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.popupContainer.exit {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.popup {
+  position: relative;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 370px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.popupEffect {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.popupContainer.exit .popup {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.popupContainer.exit .popupEffect {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.popup-img-cont {
+  text-align: center;
+  background: #5d5e5e;
+  padding: 15px;
+}
+
+.popup-img-cont img {
+  width: 120px;
+}
+
+.popup-inp-cont {
+  padding: 30px 20px;
+}
+
+.popup-inp-cont h2 {
+  font-size: x-large;
+}
+
+.view-cost {
+  text-align: center;
+}
+
+.popup h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.popup input[type="text"],
+.popup input[type="email"],
+.popup input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.popup-submit-btn-cont {
+  text-align: center;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 40px;
+  background: var(--colorSecondary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: scale(1.05);
+}
+
+.submit-btn::before,
+.submit-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.submit-btn::before {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(0);
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.4s ease;
+}
+
+.submit-btn::after {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: scale(2);
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.4s ease;
+}
+
+.submit-btn:hover::before,
+.submit-btn:hover::after {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.submit-btn span {
+  position: relative;
+  z-index: 2;
+}
+
+.submit-btn:hover span {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
 
 .close-btn {
   position: absolute;

@@ -11,4 +11,16 @@
     left: 0;
     width: 100%;
     z-index: 999;
+    transition: transform 0.3s ease-in-out;
 }
+.visible {
+    transform: translateY(0);
+  }
+  
+  .hidden {
+    transform: translateY(-100%);
+  }
+.textPrimary {
+    color: var(--colorPrimary) !important;
+    font-weight: bold;
+  }

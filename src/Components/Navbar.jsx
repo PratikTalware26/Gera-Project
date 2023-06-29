@@ -1,11 +1,13 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import "./Navbar.css";
 import mainLogo from "../assets/mainLogo(500 × 200 px).png"
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ThanksContext } from "../App";
+import axios from "axios";
 
 const Navbar = () => {
-  // const { setThanksState } = useContext(ThanksContext);
-  // const navigate = useNavigate();
+  const { setThanksState } = useContext(ThanksContext);
+  const navigate = useNavigate();
   //Handeling Form Logic
   //data
   const [enquiryData, setEnquiryData] = useState({
@@ -15,7 +17,7 @@ const Navbar = () => {
     origin: "",
     area: "form_popup",
     ip: "",
-    domain: "godrejofficial.in",
+    domain: "geradeveloper.in",
     utm_source: "",
     utm_medium: "",
     utm_campaign: "",
@@ -33,46 +35,46 @@ const Navbar = () => {
     e.preventDefault();
     // console.log(enquiryData);
     try {
-      // const fetchData = async () => {
-      //   const jsonData = JSON.stringify(enquiryData);
-      //   await axios
-      //     .post(
-      //       "https://www.crm.brickfolio.in/api/leads/add_raw_lead",
-      //       jsonData,
-      //       {
-      //         headers: {
-      //           "Content-Type": "application/json; charset=utf-8",
-      //           "Access-Control-Allow-Origin": "*",
-      //         },
-      //       }
-      //     )
-      //     .then((res) => {
-      //       setThanksState(true);
-      //       navigate("/thanks");
-      //     });
-      // };
-      // fetchData();
-      console.log(enquiryData);
+      const fetchData = async () => {
+        const jsonData = JSON.stringify(enquiryData);
+        await axios
+          .post(
+            "https://www.crm.brickfolio.in/api/leads/add_raw_lead",
+            jsonData,
+            {
+              headers: {
+                "Content-Type": "application/json; charset=utf-8",
+                "Access-Control-Allow-Origin": "*",
+              },
+            }
+          )
+          .then((res) => {
+            setThanksState(true);
+            navigate("/thanks");
+          });
+      };
+      fetchData();
+      // console.log(enquiryData);
     } catch (error) {
       console.log(error.message);
     }
   };
 
     //User ip address fetching
-    // useEffect(() => {
-    //     const fetchIP = async () => {
-    //       try {
-    //         const response = await axios.get('https://godrejofficial.in/userApi.php');
-    //         const ip = response.data.ip;
-    //         // console.log(ip)
-    //         setEnquiryData((prevData) => ({ ...prevData, ip }));
-    //       } catch (error) {
-    //         console.log('Error fetching IP address:', error);
-    //       }
-    //     };
+    useEffect(() => {
+        const fetchIP = async () => {
+          try {
+            const response = await axios.get('https://geradeveloper.in/userIp.php');
+            const ip = response.data.ip;
+            // console.log(ip)
+            setEnquiryData((prevData) => ({ ...prevData, ip }));
+          } catch (error) {
+            console.log('Error fetching IP address:', error);
+          }
+        };
     
-    //     fetchIP();
-    //   }, []);
+        fetchIP();
+      }, []);
 
   //utm data
   const location = useLocation();
@@ -151,9 +153,34 @@ const Navbar = () => {
     setIsmenuOpen(false); // Close the menu when a navigation link is clicked
   };
 
+  // ********************
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["home", "about", "bestprice", "amenities", "floorplans"]; // Define the IDs of the sections
+      const activeSections = sections.filter((section) => {
+        const targetSection = document.getElementById(section);
+        const rect = targetSection.getBoundingClientRect();
+        return rect.top >= 0 && rect.bottom <= window.innerHeight;
+      });
+
+      if (activeSections.length > 0) {
+        setActiveSection(activeSections[0]);
+      } else {
+        setActiveSection("");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="nav-cont">
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <div className={`nav-cont ${isNavVisible ? "" : "hidden"}`}>
+       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             <img src={mainLogo} alt="mainLogo" />
@@ -172,32 +199,32 @@ const Navbar = () => {
           <div className="collapse navbar-collapse flex-row-reverse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#home">
+                <a className={`nav-link ${activeSection === "home" ? "textPrimary active" : ""}`} aria-current="page" href="#home">
                   Home
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#about">
+                <a className={`nav-link ${activeSection === "about" ? "textPrimary active" : ""}`} href="#about">
                   About
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#bestprice">
+                <a className={`nav-link ${activeSection === "bestprice" ? "textPrimary active" : ""}`} href="#bestprice">
                   BestPrice
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#amenities">
+                <a className={`nav-link ${activeSection === "amenities" ? "textPrimary active" : ""}`} href="#amenities">
                   Amenities
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#floorplans">
+                <a className={`nav-link ${activeSection === "floorplans" ? "textPrimary active" : ""}`} href="#floorplans">
                   Floor Plans
                 </a>
               </li>
               <li className="nav-item">
-                <button className="btn main-btn" onClick={()=>setFormpopup(!formPopup)}>Enquiry Now</button>
+                <button className="btn main-btn" onClick={()=>setFormpopup(!formPopup)}><span>Enquiry Now</span></button>
               </li>
             </ul>
           </div>
@@ -247,7 +274,7 @@ const Navbar = () => {
                 />
                 <div className="popup-submit-btn-cont">
                   <button type="submit" className="submit-btn">
-                    Enquiry now
+                    <span>Enquiry now</span>
                   </button>
                 </div>
               </form>

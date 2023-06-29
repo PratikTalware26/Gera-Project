@@ -1,28 +1,12 @@
-import React, {useState, useEffect, useContext} from "react";
-import "./FloorPlans.css";
+import React, { useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
 import mainLogo from "../assets/mainLogo(500 × 200 px).png";
+import "./BottomButtons.css";
 import axios from "axios";
-
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
-// import required modules
-import { Navigation, Pagination } from "swiper";
-
-import floorImg from "../assets/floorPlan(350 × 230 px).jpg";
-import floorImg2 from "../assets/floorPlan2.jpg";
-import floorImg3 from "../assets/floorPlan3.jpg";
-import floorImg4 from "../assets/floorPlan4.jpg";
-
-import { useLocation, useNavigate } from "react-router-dom";
 import { ThanksContext } from "../App";
+import '@fortawesome/fontawesome-free/css/all.css';
 
-const FloorPlans = () => {
+const BottomButtons = () => {
     const { setThanksState } = useContext(ThanksContext);
     const navigate = useNavigate();
   //Handeling Form Logic
@@ -77,21 +61,21 @@ const FloorPlans = () => {
     }
   };
 
-  //User ip address fetching
-  useEffect(() => {
-    const fetchIP = async () => {
-      try {
-        const response = await axios.get('https://geradeveloper.in/userIp.php');
-        const ip = response.data.ip;
-        // console.log(ip)
-        setEnquiryData((prevData) => ({ ...prevData, ip }));
-      } catch (error) {
-        console.log('Error fetching IP address:', error);
-      }
-    };
-
-    fetchIP();
-  }, []);
+    //User ip address fetching
+    useEffect(() => {
+        const fetchIP = async () => {
+          try {
+            const response = await axios.get('https://geradeveloper.in/userIp.php');
+            const ip = response.data.ip;
+            // console.log(ip)
+            setEnquiryData((prevData) => ({ ...prevData, ip }));
+          } catch (error) {
+            console.log('Error fetching IP address:', error);
+          }
+        };
+    
+        fetchIP();
+      }, []);
 
   //utm data
   const location = useLocation();
@@ -140,80 +124,69 @@ const FloorPlans = () => {
   };
   //************** */
 
-  //handling slides wrt windowWidth
-  const [slidesPerView, setSlidesPerView] = useState(4);
-  const [windowWidth, setWindowwidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
     const handleResize = () => {
-      setWindowwidth(window.innerWidth);
+      setWindowWidth(window.innerWidth);
     };
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  const [visible, setVisible] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(
+    window.pageYOffset || document.documentElement.scrollTop
+  );
 
   useEffect(() => {
-    if(windowWidth<600){
-        setSlidesPerView(1)
-    }else if (windowWidth < 800) {
-      setSlidesPerView(2);
-    } else if (windowWidth < 1200) {
-      setSlidesPerView(3);
-    } else {
-      setSlidesPerView(4);
-    }
-  }, [windowWidth]);
+    const handleScroll = () => {
+      const currentScrollPos =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const isVisible = prevScrollPos > currentScrollPos;
 
-  return (
-    <div className="p-2 floor-cont" id="floorplans">
-      <h2 className="text-center p-2">Floor Plans</h2>
-      <div>
-        <Swiper
-          pagination={{
-            clickable:true
-          }}
-          navigation={true}
-          modules={[Pagination, Navigation]}
-          slidesPerView={slidesPerView}
-          spaceBetween={30}
-          className="mySwiper"
-        >
-          <SwiperSlide>
-            <div className="floor-img-cont">
-            <img src={floorImg} alt="floorImg1" className="w-100" />
-            <button className="floor-btn btn main-btn" onClick={()=>setFormpopup(!formPopup)}><span>View Plan</span></button>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="floor-img-cont">
-            <img src={floorImg2} alt="floorImg2" className="w-100" />
-            <button className="floor-btn btn main-btn" onClick={()=>setFormpopup(!formPopup)}><span>View Plan</span></button>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="floor-img-cont">
-            <img src={floorImg3} alt="floorImg3" className="w-100" />
-            <button className="floor-btn btn main-btn" onClick={()=>setFormpopup(!formPopup)}><span>View Plan</span></button>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="floor-img-cont">
-            <img src={floorImg4} alt="floorImg4" className="w-100" />
-            <button className="floor-btn btn main-btn" onClick={()=>setFormpopup(!formPopup)}><span>View Plan</span></button>
-            </div>
-          </SwiperSlide>
-        </Swiper>
-      </div>
-      {formPopup && (
+      setVisible(isVisible);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos]);
+
+  if (windowWidth < 600) {
+    return (
+      <>
+        <div className={`bottom-btn-cont ${visible ? "visible" : ""}`}>
+          <div>
+            <a href="tel:+919730003331">
+            <button>
+              <i className="fas fa-phone-alt m-1" aria-hidden="true"></i>Enquiry
+            </button>
+            </a>
+          </div>
+          <div>
+            <button onClick={()=>setFormpopup(!formPopup)}>₹ Cost Sheet</button>
+          </div>
+          <div>
+            <a href="https://wa.link/eelpvs">
+            <button>
+              <i className="fab fa-whatsapp m-1" aria-hidden="true"></i>Whatsapp
+            </button>
+            </a>
+          </div>
+        </div>
+
+        {formPopup && (
           <div className={`popupContainer ${isExiting ? "exit" : ""}`} onClick={closePopup}>
             <div className={`popup ${transitionClass}`} onClick={(e)=>e.stopPropagation()}>
               <div className="popup-img-cont">
                 <img src={mainLogo} alt="" />
               </div>
               <div className="popup-inp-cont">
-                <h2>Register to view plan</h2>
+                <h2>Register for costsheet</h2>
                 <form onSubmit={handleSubmit}>
                   <input
                     type="text"
@@ -244,7 +217,7 @@ const FloorPlans = () => {
                   />
                   <div className="popup-submit-btn-cont">
                     <button type="submit" className="submit-btn">
-                      View Plan
+                      View Costsheet
                     </button>
                   </div>
                 </form>
@@ -255,8 +228,11 @@ const FloorPlans = () => {
             </div>
           </div>
         )}
-    </div>
-  );
+      </>
+    );
+  } else {
+    return null;
+  }
 };
 
-export default FloorPlans;
+export default BottomButtons;
