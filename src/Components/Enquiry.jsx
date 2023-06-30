@@ -143,7 +143,7 @@ const Enquiry = () => {
                 </div>
                 <div className="enquiry-submit-btn-cont">
                   <button className="enquiry-submit-btn" type="submit">
-                    Schedule a site visit
+                    Schedule a Site Visit
                   </button>
                 </div>
               </form>

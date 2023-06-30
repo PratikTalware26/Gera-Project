@@ -47,7 +47,7 @@
     .about-img-cont{
         display: none;
     }
-    .about-desc{
+    .about-desc, .location-desc{
         box-shadow: 2px 2px 2px 2px #ccc;
     }
 }

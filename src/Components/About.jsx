@@ -8,7 +8,7 @@ const About = () => {
             {/* <img src="" alt="" /> */}
         </div>
         <div className='p-3 about-desc'>
-            <h1>About Us</h1>
+            <h1>GERA World Of Joy</h1>
             <p>
             Gera Designers have embraced the amazing private endeavour known as Welcome to Gera's Island of Joy. In Pune's Kharadi, one can assert its fundamental position. Given its prime location and rapid growth, it is one of Pune's most sought-after residential districts for investment. It has a 20-acre land area.
             </p>

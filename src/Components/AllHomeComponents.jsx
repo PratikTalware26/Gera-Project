@@ -7,6 +7,7 @@ import Amenities from './Amenities'
 import FloorPlans from './FloorPlans'
 import Enquiry from './Enquiry'
 import BottomButtons from './BottomButtons'
+import Location from './Location'
 
 const AllHomeComponents = () => {
   return (
@@ -15,6 +16,7 @@ const AllHomeComponents = () => {
         <Home/>
         <About/>
         <BestPrice/>
+        <Location/>
         <Amenities/>
         <FloorPlans/>
         <Enquiry/>

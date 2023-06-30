@@ -186,7 +186,7 @@ const BottomButtons = () => {
                 <img src={mainLogo} alt="" />
               </div>
               <div className="popup-inp-cont">
-                <h2>Register for costsheet</h2>
+                <h2>Register For Costsheet</h2>
                 <form onSubmit={handleSubmit}>
                   <input
                     type="text"

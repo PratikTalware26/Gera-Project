@@ -142,16 +142,16 @@ const Navbar = () => {
     };
   }, [prevScrollPos]);
 
-  //Handeling Navbar toggling icon
-  const [isMenuOpen, setIsmenuOpen] = useState(false);
+  // //Handeling Navbar toggling icon
+  // const [isMenuOpen, setIsmenuOpen] = useState(false);
 
-  //handeling click event of nav-btn
-  const handleNavClick = () => {
-    setIsmenuOpen(!isMenuOpen);
-  };
-  const handleNavLinkClick = () => {
-    setIsmenuOpen(false); // Close the menu when a navigation link is clicked
-  };
+  // //handeling click event of nav-btn
+  // const handleNavClick = () => {
+  //   setIsmenuOpen(!isMenuOpen);
+  // };
+  // const handleNavLinkClick = () => {
+  //   setIsmenuOpen(false); // Close the menu when a navigation link is clicked
+  // };
 
   // ********************
   const [activeSection, setActiveSection] = useState("");
@@ -219,6 +219,11 @@ const Navbar = () => {
                 </a>
               </li>
               <li className="nav-item">
+                <a className={`nav-link ${activeSection === "amenities" ? "textPrimary active" : ""}`} href="#location">
+                  Location
+                </a>
+              </li>
+              <li className="nav-item">
                 <a className={`nav-link ${activeSection === "floorplans" ? "textPrimary active" : ""}`} href="#floorplans">
                   Floor Plans
                 </a>
@@ -243,7 +248,7 @@ const Navbar = () => {
               <img src={mainLogo} alt="" />
             </div>
             <div className="popup-inp-cont">
-              <h2>Register for enquiry</h2>
+              <h2>Register For Enquiry</h2>
               <form onSubmit={handleSubmit}>
                 <input
                   type="text"
@@ -274,7 +279,7 @@ const Navbar = () => {
                 />
                 <div className="popup-submit-btn-cont">
                   <button type="submit" className="submit-btn">
-                    <span>Enquiry now</span>
+                    <span>Enquiry Now</span>
                   </button>
                 </div>
               </form>

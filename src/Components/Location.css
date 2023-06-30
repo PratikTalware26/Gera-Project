@@ -1,0 +1,36 @@
+.location-img-cont{
+    width: 100%;
+    min-height: 500px;
+    background-image: url("../assets/locationImg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 2px 2px 2px 2px #ccc;
+}
+.location-desc{
+    width: 100%;
+}
+.location-cont{
+    gap: 10px;
+}
+ .zoom-icon-btn{
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+ }
+
+@media screen and (max-width:800px) {
+    .location-cont{
+        flex-direction: column;
+    }
+    .location-img-cont{
+        min-height: 400px !important;
+    }
+    .location-desc h2{
+        text-align: center;
+    }
+
+}

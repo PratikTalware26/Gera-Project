@@ -126,7 +126,7 @@ const BestPrice = () => {
   return (
     <div className='p-2 d-flex align-items-center' id='bestprice'>
       <div className='w-100'>
-        <h2 className='text-center p-2 text-light'>Best Price</h2>
+        <h2 className='text-center p-2 text-light'>GERA World Of Joy Best Price</h2>
         <div className="pricetable-cont">
         <table className="table table-striped text-center">
           <thead>
@@ -218,7 +218,7 @@ const BestPrice = () => {
                 <img src={mainLogo} alt="" />
               </div>
               <div className="popup-inp-cont">
-                <h2>Register to view price</h2>
+                <h2>Register to View Price</h2>
                 <form onSubmit={handleSubmit}>
                   <input
                     type="text"

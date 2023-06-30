@@ -213,7 +213,7 @@ const FloorPlans = () => {
                 <img src={mainLogo} alt="" />
               </div>
               <div className="popup-inp-cont">
-                <h2>Register to view plan</h2>
+                <h2>Register to View Plan</h2>
                 <form onSubmit={handleSubmit}>
                   <input
                     type="text"

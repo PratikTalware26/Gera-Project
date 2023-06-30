@@ -69,7 +69,7 @@ const Amenities = () => {
 
   return (
     <div className="p-2 amenities-cont" id="amenities">
-      <h2 className="text-center p-2">Amenities</h2>
+      <h2 className="text-center p-2">GERA World Of Joy Amenities</h2>
       <div>
         <Swiper
           pagination={true}

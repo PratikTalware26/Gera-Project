@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import "./home.css"
 import homeImg from "../assets/homeImg.jpg"
-import homeMobImg from "../assets/homeMobImg.jpg"
+// import homeMobImg from "../assets/homeMobImg.jpg"
+import homeMobImg from "../assets/homeMobImg (500 × 800 px).jpg"
 
 const Home = () => {
   const [windowWidth, setWindowwidth]= useState(window.innerWidth)
