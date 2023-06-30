@@ -66,7 +66,7 @@ const Amenities = () => {
       document.body.style.overflow = "auto";
     };
   },[enlargedImage])
-
+  
   return (
     <div className="p-2 amenities-cont" id="amenities">
       <h2 className="text-center p-2">GERA World Of Joy Amenities</h2>

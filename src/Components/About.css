@@ -1,7 +1,8 @@
 .about-img-cont{
     width: 600px;
     min-height: 500px;
-    background-image: url("../assets/aboutImg (600 × 500 px).jpg");
+    /* background-image: url("../assets/aboutImg (600 × 500 px).jpg"); */
+    background-image: url("../assets/aboutImg copy.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

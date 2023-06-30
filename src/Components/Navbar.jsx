@@ -158,25 +158,29 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "bestprice", "amenities", "floorplans"]; // Define the IDs of the sections
+      const sections = ["home", "about", "bestprice", "amenities", "floorplans"];
       const activeSections = sections.filter((section) => {
         const targetSection = document.getElementById(section);
-        const rect = targetSection.getBoundingClientRect();
-        return rect.top >= 0 && rect.bottom <= window.innerHeight;
+        if (targetSection) {
+          const rect = targetSection.getBoundingClientRect();
+          return rect.top >= 0 && rect.bottom <= window.innerHeight;
+        }
+        return false;
       });
-
+  
       if (activeSections.length > 0) {
         setActiveSection(activeSections[0]);
       } else {
         setActiveSection("");
       }
     };
-
+  
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  
 
   return (
     <div className={`nav-cont ${isNavVisible ? "" : "hidden"}`}>
